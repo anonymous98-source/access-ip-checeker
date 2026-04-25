@@ -63,7 +63,7 @@ public class AccessCheckerApp extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         Image icon = Toolkit.getDefaultToolkit()
-                .getImage(getClass().getResource("/icon.png"));
+                .getImage(getClass().getResource("/ip-adress.png"));
         setIconImage(icon);
         initUI();
     }
@@ -250,10 +250,10 @@ public class AccessCheckerApp extends JFrame {
             StyledDocument doc = resultPane.getStyledDocument();
             Style style = resultPane.addStyle("style", null);
             StyleConstants.setForeground(style,
-                    r.success() ? successColor : failColor);
+                    r.success ? successColor : failColor);
 
             doc.insertString(doc.getLength(),
-                    r.target() + " → " + r.message() + "\n", style);
+                    r.target + " → " + r.message + "\n", style);
 
         } catch (Exception ignored) {
         }
@@ -267,9 +267,9 @@ public class AccessCheckerApp extends JFrame {
         try (FileWriter fw = new FileWriter("access_result.csv")) {
             fw.write("Target,Status,Message\n");
             for (Result r : results)
-                fw.write(r.target() + "," +
-                        (r.success() ? "SUCCESS" : "FAILED") + "," +
-                        r.message() + "\n");
+                fw.write(r.target + "," +
+                        (r.success ? "SUCCESS" : "FAILED") + "," +
+                        r.message + "\n");
             JOptionPane.showMessageDialog(this, "CSV exported");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());

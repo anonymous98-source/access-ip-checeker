@@ -10,4 +10,6 @@ public class Result {
         this.success = success;
         this.message = message;
     }
+
+
 }
